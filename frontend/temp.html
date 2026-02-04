@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d59f2",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <title>ViralDownloader - Your Video is Ready</title>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-white">
+    <div
+        class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark overflow-x-hidden">
+        <!-- Header Section -->
+        <header
+            class="flex items-center justify-between border-b border-solid border-[#282e39] px-10 py-4 bg-background-light dark:bg-background-dark sticky top-0 z-50">
+            <div class="flex items-center gap-8">
+                <div class="flex items-center gap-4 text-white">
+                    <div class="size-6 text-primary">
+                        <svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">ViralDownloader</h2>
+                </div>
+                <label class="flex flex-col min-w-40 h-10 max-w-64">
+                    <div class="flex w-full flex-1 items-stretch rounded-lg h-full overflow-hidden">
+                        <div class="text-[#9ca6ba] flex border-none bg-[#282e39] items-center justify-center pl-4">
+                            <span class="material-symbols-outlined text-xl">search</span>
+                        </div>
+                        <input
+                            class="form-input flex w-full min-w-0 flex-1 border-none bg-[#282e39] text-white placeholder:text-[#9ca6ba] px-4 pl-2 text-base font-normal focus:ring-0 focus:outline-none"
+                            placeholder="Paste another link..." value="" />
+                    </div>
+                </label>
+            </div>
+            <div class="flex items-center gap-8">
+                <nav class="hidden md:flex items-center gap-9">
+                    <a class="text-[#9ca6ba] hover:text-white text-sm font-medium transition-colors" href="#">Home</a>
+                    <a class="text-[#9ca6ba] hover:text-white text-sm font-medium transition-colors"
+                        href="#">Features</a>
+                    <a class="text-[#9ca6ba] hover:text-white text-sm font-medium transition-colors"
+                        href="#">Premium</a>
+                    <a class="text-[#9ca6ba] hover:text-white text-sm font-medium transition-colors" href="#">FAQ</a>
+                </nav>
+                <button
+                    class="flex min-w-[84px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold tracking-[0.015em]">
+                    <span>Login</span>
+                </button>
+            </div>
+        </header>
+        <main class="flex-1 flex flex-col items-center py-8 px-4 md:px-20 lg:px-40">
+            <!-- Breadcrumbs -->
+            <div class="w-full max-w-[1100px] flex flex-wrap gap-2 py-4">
+                <a class="text-[#9ca6ba] text-base font-medium hover:text-white" href="#">Home</a>
+                <span class="text-[#9ca6ba] text-base font-medium">/</span>
+                <span class="text-white text-base font-medium">Download Options</span>
+            </div>
+            <div class="w-full max-w-[1100px]">
+                <h2 class="text-white text-[32px] font-bold leading-tight tracking-[-0.015em] py-6">Your Video is Ready
+                </h2>
+
+                <div class="w-full max-w-4xl p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                    <!-- Left -->
+                    <div class="bg-[#1c222d] rounded-xl flex items-center justify-center p-6">
+                        <div class="flex justify-center w-full">
+                            <div id="videoWrapper"
+                                class="bg-black rounded-xl overflow-hidden transition-all duration-300">
+                                <video id="videoPreview" class="block bg-black" playsinline preload="metadata"></video>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Right -->
+                    <div class="flex flex-col gap-4">
+                        <h3 class="text-lg font-bold">Choose Quality</h3>
+
+                        <div onclick="select('best')"
+                            class="quality ring ring-blue-500 p-4 bg-[#1c222d] rounded-lg cursor-pointer">
+                            Best Quality (MP4)
+                        </div>
+
+                        <!-- <div onclick="select('audio')" class="quality p-4 bg-[#1c222d] rounded-lg cursor-pointer">
+                Audio Only (MP3)
+            </div> -->
+
+                        <button onclick="download()" class="mt-4 bg-blue-600 py-4 rounded-lg font-bold">
+                            Download
+                        </button>
+                    </div>
+
+                </div>
+                <!-- History Section -->
+                <div class="mt-20 w-full">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">history</span>
+                            Recent History
+                        </h3>
+                        <a class="text-primary text-sm font-bold" href="#">View All</a>
+                    </div>
+                    <div class="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
+                        <!-- History Item 1 -->
+                        <div class="flex-shrink-0 w-[180px] group cursor-pointer">
+                            <div
+                                class="relative aspect-video rounded-lg overflow-hidden mb-2 border border-[#282e39] group-hover:border-primary/50 transition-all">
+                                <img alt="Video thumbnail 1" class="w-full h-full object-cover"
+                                    data-alt="Thumbnail showing a camera lens close up"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTC-peZbgXiDdSkYV-WTKViZ8j_f1_ZCOlh3bGJLRj4vx8lMTrIbZ_J-wtyZnpO5cK-Y4TeWUmKlmcyzJskUnBGY1hdce2Dyiwb2FP9L5JKKpgZaUcrI_w8c99HQPrmTHZqLs1wSLb9dENv29yNX63a_IsYV5JL5I9i-zeliSNpk0eOv8UH0X17a1cXOTCODZmqyyc-9RAabkP-hiGgdaMiD61d6n7tSJ1OqR_WLreOhe5HJgIyVff0SOrkM-cA3EG7D7Zn5Fl5he5" />
+                                <div
+                                    class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">
+                                    <span class="material-symbols-outlined text-white">download</span>
+                                </div>
+                                <div class="absolute bottom-1 right-1 bg-black/60 px-1 rounded text-[10px] text-white">
+                                    0:15</div>
+                            </div>
+                            <p class="text-xs font-medium text-white truncate px-1">Nature_shorts_v1.mp4</p>
+                        </div>
+                        <!-- History Item 2 -->
+                        <div class="flex-shrink-0 w-[180px] group cursor-pointer">
+                            <div
+                                class="relative aspect-video rounded-lg overflow-hidden mb-2 border border-[#282e39] group-hover:border-primary/50 transition-all">
+                                <img alt="Video thumbnail 2" class="w-full h-full object-cover"
+                                    data-alt="Thumbnail showing a person coding at night"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkbT5F6FR9DGer-_-IMqgEdU3p5-m7x6wY7LQX8jz_Be-SABtCORUp2Afj7hJj1ocbGGNUNY1l4qTs_Rxdu1vOZlpSl5KijTZUvCwfFZxciXT-c6tR4er0o-UNURLR6RqRQ2pESrDUfKjPxJXFIXlw6sjj3itJ_EPYFQJ6lYlb2eb_XmGX31WnG3pOeVFzFJHfn7WWm1YjuAofOwfcRbE05PFnqKlPYHkBH_cvJv_bpXjVpwnaIYWailRrHw44jRzRqrACmDG1zryb" />
+                                <div
+                                    class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">
+                                    <span class="material-symbols-outlined text-white">download</span>
+                                </div>
+                                <div class="absolute bottom-1 right-1 bg-black/60 px-1 rounded text-[10px] text-white">
+                                    1:02</div>
+                            </div>
+                            <p class="text-xs font-medium text-white truncate px-1">coding_tutorial_part4.mp4</p>
+                        </div>
+                        <!-- History Item 3 -->
+                        <div class="flex-shrink-0 w-[180px] group cursor-pointer">
+                            <div
+                                class="relative aspect-video rounded-lg overflow-hidden mb-2 border border-[#282e39] group-hover:border-primary/50 transition-all">
+                                <img alt="Video thumbnail 3" class="w-full h-full object-cover"
+                                    data-alt="Thumbnail showing neon circuitry"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvM12Xw8i1GDUOcAQnuZi-YAIIW-5rJYl8FcJbMPLNOcxvqguXZAcTdwepYjtxcoTb8JebbTtfjdyoJTrVKLk--hZRaFKVakbcDTFIPClMrYzkeR9zM_eUuyIi2VAqxi3nbCQn6I97XBdI3D17rkYmuSffLQunXzwTLCbKxEeoAlmyWSa8qaFd3LhffF27eQmN7MubBA4mMXrOrKrVu3WF94ygKvHMsZSJhpOhWgVzmnh2Ggn3LydljzdWSk4VsJmsurz2KC2PDdQL" />
+                                <div
+                                    class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">
+                                    <span class="material-symbols-outlined text-white">download</span>
+                                </div>
+                                <div class="absolute bottom-1 right-1 bg-black/60 px-1 rounded text-[10px] text-white">
+                                    0:30</div>
+                            </div>
+                            <p class="text-xs font-medium text-white truncate px-1">tech_review_highlights.mp4</p>
+                        </div>
+                        <!-- History Item 4 -->
+                        <div class="flex-shrink-0 w-[180px] group cursor-pointer">
+                            <div
+                                class="relative aspect-video rounded-lg overflow-hidden mb-2 border border-[#282e39] group-hover:border-primary/50 transition-all">
+                                <img alt="Video thumbnail 4" class="w-full h-full object-cover"
+                                    data-alt="Thumbnail showing a recording microphone"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2K9FOjxjjcUPidQxiiVkPRrwHT8n56gVtHcSoAZBxmDuNsyi05f55BdrNDvGP1IwaPDCdOl8TCzu5TgF56El4k-hXcGEV-VZIYApK4Znppzsjj-jp6aoMignlwDu_B6h0IvJwBkOzObWy8wfZWKTwgOvGP2g-mK1UDby4OhkGN7mRvLGGiOPAqfuHAXV8TYmhjGEdZUhUObdg9t7NRwR1Vldpngeeeej86xMXKFkQcwK5Upz4fudGShVYwd-e4joafISPdRjh_7ia" />
+                                <div
+                                    class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">
+                                    <span class="material-symbols-outlined text-white">download</span>
+                                </div>
+                                <div class="absolute bottom-1 right-1 bg-black/60 px-1 rounded text-[10px] text-white">
+                                    3:45</div>
+                            </div>
+                            <p class="text-xs font-medium text-white truncate px-1">podcast_snippet_7.mp3</p>
+                        </div>
+                        <!-- History Item 5 -->
+                        <div class="flex-shrink-0 w-[180px] group cursor-pointer">
+                            <div
+                                class="relative aspect-video rounded-lg overflow-hidden mb-2 border border-[#282e39] group-hover:border-primary/50 transition-all">
+                                <img alt="Video thumbnail 5" class="w-full h-full object-cover"
+                                    data-alt="Thumbnail showing a music concert stage"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4M_lv44OdvdCOs6UaOzeLKHc4Zbl8L46JsIeEreYuJhrTi8YuK7O0Lo0xUXJ4g0Sujaf3xVn6k7aJBfPeI4GFta2jKqdZuG7-wEvu4bvgZa83pGQTNKivVyLEFxSBN_HM9Ye7-eDS3nESHoHm_Cy9lcGEzKzuP1F55YpaQUj0yZkXLQfV8QWPi-CjcIkDHQWU99VSg28LPqbHjLB3VFPd2gy3k8ugFf88pGPbd0peZ0bNwY_M7SRyno48GGi0Edgy4NW-wdYfwgVV" />
+                                <div
+                                    class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">
+                                    <span class="material-symbols-outlined text-white">download</span>
+                                </div>
+                                <div class="absolute bottom-1 right-1 bg-black/60 px-1 rounded text-[10px] text-white">
+                                    0:24</div>
+                            </div>
+                            <p class="text-xs font-medium text-white truncate px-1">concert_reel_final.mp4</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- Footer -->
+        <footer class="mt-auto py-8 border-t border-[#282e39] bg-background-light dark:bg-background-dark px-10">
+            <div class="max-w-[1100px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">verified</span>
+                    <p class="text-[#9ca6ba] text-sm">© 2023 ViralDownloader. Fast &amp; Secure.</p>
+                </div>
+                <div class="flex gap-8">
+                    <a class="text-[#9ca6ba] text-sm hover:text-white" href="#">Privacy Policy</a>
+                    <a class="text-[#9ca6ba] text-sm hover:text-white" href="#">Terms of Service</a>
+                    <a class="text-[#9ca6ba] text-sm hover:text-white" href="#">API Support</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const token = params.get("token");
+        let quality = "best";
+
+        const video = document.getElementById("videoPreview");
+        const wrapper = document.getElementById("videoWrapper");
+
+        // load preview video
+        if (token) {
+            video.src = `http://localhost:8000/download/${token}`;
+        }
+
+        // adjust UI to real video dimensions
+        video.onloadedmetadata = () => {
+            const vw = video.videoWidth;
+            const vh = video.videoHeight;
+
+            // reset styles
+            wrapper.style.width = "";
+            wrapper.style.maxWidth = "";
+            wrapper.style.aspectRatio = "";
+            video.style.width = "100%";
+            video.style.height = "auto";
+
+            // vertical video (Reels / Shorts)
+            if (vh > vw) {
+                wrapper.style.width = "360px";
+                wrapper.style.maxWidth = "90vw";
+                wrapper.style.aspectRatio = "9 / 16";
+            }
+            // horizontal video
+            else {
+                wrapper.style.width = "100%";
+                wrapper.style.maxWidth = "960px";
+                wrapper.style.aspectRatio = "16 / 9";
+            }
+        };
+
+        function select(q) {
+            quality = q;
+            document.querySelectorAll(".quality").forEach(el =>
+                el.classList.remove("ring", "ring-blue-500")
+            );
+            event.currentTarget.classList.add("ring", "ring-blue-500");
+        }
+
+        function download() {
+            if (!token) return;
+            window.location.href =
+                `http://localhost:8000/download/${token}?quality=${quality}`;
+        }
+
+    </script>
+</body>
+
+</html>
