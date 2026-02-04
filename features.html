@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Core Features Showcase | ViralDownloader</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700;800;900&amp;family=Noto+Sans:wght@400;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d59f2",
+                        "accent-pink": "#ff00ff",
+                        "accent-blue": "#00f2ff",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .neon-glow-blue {
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+        }
+
+        .neon-glow-pink {
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.2);
+        }
+
+        .bg-grid-pattern {
+            background-image: radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.05) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-white selection:bg-primary/30">
+    <div class="fixed bottom-8 right-8 z-50">
+        <button onclick="scrollToFeatureInput()"
+            class="flex min-w-[140px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 px-6 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] shadow-lg shadow-primary/40 hover:scale-105 transition-transform">
+            <span class="material-symbols-outlined mr-2">bolt</span>
+            <span class="truncate">Try It Now</span>
+        </button>
+    </div>
+    <div
+        class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+            <div
+                class="w-full flex justify-center py-5 sticky top-0 z-40 bg-background-dark/80 backdrop-blur-md border-b border-[#282e39]">
+                <div class="layout-content-container flex flex-col max-w-[1200px] flex-1">
+                    <header class="flex items-center justify-between whitespace-nowrap px-10 py-3">
+                        <div class="flex items-center gap-4 text-white">
+                            <div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+                        <span class="material-symbols-outlined">bolt</span>
+                    </div>
+                            <h2 class="text-white text-2xl font-black leading-tight tracking-tighter">ViralDownloader</h2>
+                        </div>
+                        <div class="flex flex-1 justify-end gap-8">
+                            <div class="flex items-center gap-9">
+                                <a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors"
+                                    href="index.html">Home</a>
+                                <a class="text-primary text-sm font-bold leading-normal border-b-2 border-primary"
+                                    href="#">Features</a>
+                                <a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors"
+                                    href="#">Pricing</a>
+                                <a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors"
+                                    href="#">FAQ</a>
+                            </div>
+                        </div>
+                    </header>
+                </div>
+            </div>
+            <main class="flex-1 bg-grid-pattern">
+                <section class="flex justify-center py-20 px-10">
+                    <div class="max-w-[1200px] w-full">
+                        <div class="flex flex-col @[864px]:flex-row gap-12 items-center">
+                            <div class="w-full @[864px]:w-1/2 relative group">
+                                <div
+                                    class="absolute -inset-1 bg-gradient-to-r from-accent-blue to-primary rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200">
+                                </div>
+                                <div
+                                    class="relative flex overflow-hidden rounded-xl border border-white/10 bg-black aspect-video">
+                                    <div class="w-1/2 bg-cover bg-center grayscale contrast-75 brightness-50"
+                                        data-alt="Standard definition blurry video comparison placeholder"
+                                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuClHe91GcS-Sl9tYR7eeqB9GxcNRtEV0RDIYJ8SvcLs8vFkxTN1v6DbeO9wIAxu-sek_ThGG59KAF9KGeLwUBAKJeuniTivHITs6yLH3KdTnyXnxdQL0E5maznLIOyeYIjuSpbbjgtqz4QVidhnMODOBzLc78hfpM4aotjUeCQrrCEfVdrxfknkfTmwZpzNGoE9lzwNq1yvnp6ybcbd4msH3i_WZ1qzVEm2cR6-x3knjQxaqMhdczhqCMJy9-AklH6hfud832y7fd1G')">
+                                        <div
+                                            class="absolute top-4 left-4 bg-black/60 px-3 py-1 rounded text-xs font-bold tracking-widest uppercase">
+                                            720p</div>
+                                    </div>
+                                    <div class="w-1/2 bg-cover bg-center border-l-2 border-accent-blue"
+                                        data-alt="Ultra high definition crystal clear video comparison placeholder"
+                                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBS8W8YLLRHuGgR5-WmJLF51CsnQWE5n64zYHwrSFO43RzDy5TdULXEFCjZaApfmfg9j8H4OO4YZ5fKkCz3CrEV1kokzl4xRBl6WP5RoGQzwq__wymmOcbNdIg9aLrY2G43jvVApg5WWyk_wLm-91R_6TubTDmjoZarYFbL78kn753VgW3yEMboC7U_DWg7y6gk--WvQm9a-MiUKpPZLHBwZacD3Q8xwKnolUD-mo-wkKWAxE_4eyKjuu2wtHyjHV_qjTiiJSscWZuw')">
+                                        <div
+                                            class="absolute top-4 right-4 bg-accent-blue text-black px-3 py-1 rounded text-xs font-bold tracking-widest uppercase">
+                                            Ultra 4K</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-full @[864px]:w-1/2 flex flex-col gap-6">
+                                <span class="text-accent-blue font-bold tracking-[0.2em] text-xs uppercase">Resolution
+                                    King</span>
+                                <h1
+                                    class="text-white text-5xl @[480px]:text-6xl font-black leading-tight tracking-[-0.05em]">
+                                    Ultra 4K <br /><span
+                                        class="text-transparent bg-clip-text bg-gradient-to-r from-accent-blue to-primary">Lossless
+                                        Quality</span>
+                                </h1>
+                                <p class="text-[#9ca6ba] text-lg font-normal leading-relaxed max-w-[500px]">
+                                    Why settle for grain? Our proprietary AI upscaling and raw extraction engine ensures
+                                    every pixel is captured in stunning 4K detail.
+                                </p>
+                                <div class="flex gap-4">
+                                    <div class="flex items-center gap-2 text-white/80">
+                                        <span class="material-symbols-outlined text-accent-blue">check_circle</span>
+                                        <span class="text-sm font-medium">HDR Support</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-white/80">
+                                        <span class="material-symbols-outlined text-accent-blue">check_circle</span>
+                                        <span class="text-sm font-medium">60 FPS Native</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="flex justify-center py-20 px-10 bg-white/5 border-y border-white/5">
+                    <div class="max-w-[1200px] w-full">
+                        <div class="flex flex-col @[864px]:flex-row-reverse gap-12 items-center">
+                            <div class="w-full @[864px]:w-1/2">
+                                <div class="bg-[#1a212e] p-8 rounded-2xl border border-white/10 neon-glow-pink">
+                                    <div class="flex flex-col gap-8">
+                                        <div class="flex justify-between items-end">
+                                            <div class="flex gap-4 items-center">
+                                                <div
+                                                    class="size-12 bg-accent-pink/20 rounded-lg flex items-center justify-center">
+                                                    <span
+                                                        class="material-symbols-outlined text-accent-pink text-3xl">cloud_download</span>
+                                                </div>
+                                                <div>
+                                                    <p class="text-white font-bold text-lg">Viral_Reel_09.mp4</p>
+                                                    <p class="text-[#9ca6ba] text-xs uppercase tracking-widest">
+                                                        Processing in cloud...</p>
+                                                </div>
+                                            </div>
+                                            <p class="text-accent-pink text-2xl font-black">99%</p>
+                                        </div>
+                                        <div class="relative pt-1">
+                                            <div class="overflow-hidden h-3 mb-4 text-xs flex rounded-full bg-white/10">
+                                                <div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-gradient-to-r from-accent-pink to-primary transition-all duration-500"
+                                                    style="width:99%"></div>
+                                            </div>
+                                        </div>
+                                        <div class="flex justify-between items-center bg-black/20 p-4 rounded-xl">
+                                            <div class="flex items-center gap-2">
+                                                <span
+                                                    class="material-symbols-outlined text-accent-pink text-sm">speed</span>
+                                                <span class="text-[#9ca6ba] text-xs font-bold uppercase">1.2 GB/s</span>
+                                            </div>
+                                            <div class="flex items-center gap-2">
+                                                <span
+                                                    class="material-symbols-outlined text-accent-pink text-sm">timer</span>
+                                                <span class="text-[#9ca6ba] text-xs font-bold uppercase">0.4s
+                                                    Remaining</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-full @[864px]:w-1/2 flex flex-col gap-6">
+                                <span class="text-accent-pink font-bold tracking-[0.2em] text-xs uppercase">Velocity
+                                    Optimized</span>
+                                <h1 class="text-white text-5xl font-black leading-tight tracking-[-0.05em]">
+                                    Lightning <br /><span
+                                        class="text-transparent bg-clip-text bg-gradient-to-r from-accent-pink to-primary">Extraction</span>
+                                </h1>
+                                <p class="text-[#9ca6ba] text-lg font-normal leading-relaxed">
+                                    Our global server network fetches content instantly. We bypass throttling to deliver
+                                    maximum speed on any connection.
+                                </p>
+                                <div class="grid grid-cols-2 gap-6 mt-4">
+                                    <div class="flex flex-col gap-2">
+                                        <h3 class="text-white font-bold">Turbo Mode</h3>
+                                        <p class="text-[#9ca6ba] text-sm leading-tight">Multithreaded downloading
+                                            enabled for every file.</p>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <h3 class="text-white font-bold">Cloud Fetch</h3>
+                                        <p class="text-[#9ca6ba] text-sm leading-tight">We download it to our servers
+                                            first, so you don't wait.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="flex justify-center py-24 px-10">
+                    <div class="max-w-[1200px] w-full text-center">
+                        <span
+                            class="text-accent-blue font-bold tracking-[0.3em] text-xs uppercase block mb-6">Cross-ecosystem</span>
+                        <h2 class="text-white text-5xl font-black leading-tight tracking-[-0.05em] mb-16">
+                            One App. <span class="text-primary italic">Every</span> Platform.
+                        </h2>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                            <div
+                                class="group bg-[#1a212e] p-10 rounded-2xl border border-white/5 hover:border-accent-blue/50 transition-all duration-300 flex flex-col items-center gap-4">
+                                <div
+                                    class="size-16 bg-white/5 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <span class="material-symbols-outlined text-4xl text-white">movie</span>
+                                </div>
+                                <h3 class="text-xl font-bold">Instagram Reels</h3>
+                                <p class="text-[#9ca6ba] text-sm">Original audio &amp; HDR</p>
+                            </div>
+                            <div
+                                class="group bg-[#1a212e] p-10 rounded-2xl border border-white/5 hover:border-accent-pink/50 transition-all duration-300 flex flex-col items-center gap-4">
+                                <div
+                                    class="size-16 bg-white/5 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <span class="material-symbols-outlined text-4xl text-white">video_library</span>
+                                </div>
+                                <h3 class="text-xl font-bold">YT Shorts</h3>
+                                <p class="text-[#9ca6ba] text-sm">Bypass ad-restrictions</p>
+                            </div>
+                            <div
+                                class="group bg-[#1a212e] p-10 rounded-2xl border border-white/5 hover:border-accent-blue/50 transition-all duration-300 flex flex-col items-center gap-4">
+                                <div
+                                    class="size-16 bg-white/5 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <span class="material-symbols-outlined text-4xl text-white">brand_family</span>
+                                </div>
+                                <h3 class="text-xl font-bold">TikTok</h3>
+                                <p class="text-[#9ca6ba] text-sm">No watermark export</p>
+                            </div>
+                            <div
+                                class="group bg-[#1a212e] p-10 rounded-2xl border border-white/5 hover:border-accent-pink/50 transition-all duration-300 flex flex-col items-center gap-4">
+                                <div
+                                    class="size-16 bg-white/5 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <span class="material-symbols-outlined text-4xl text-white">bookmark</span>
+                                </div>
+                                <h3 class="text-xl font-bold">Pinterest</h3>
+                                <p class="text-[#9ca6ba] text-sm">Save full-res boards</p>
+                            </div>
+                        </div>
+                        <div
+                            class="mt-20 relative px-10 py-16 rounded-[2rem] bg-gradient-to-br from-primary to-[#05225e] overflow-hidden">
+                            <div
+                                class="absolute top-0 right-0 w-64 h-64 bg-accent-blue opacity-10 blur-[100px] -mr-32 -mt-32">
+                            </div>
+                            <div class="relative z-10">
+                                <h3 class="text-3xl font-black mb-6">Ready to download at 4K speed?</h3>
+                                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                                    <input id="featureVideoUrl"
+                                        class="bg-black/20 border border-white/10 rounded-xl px-6 py-4 w-full max-w-md focus:outline-none focus:ring-2 focus:ring-accent-blue text-white placeholder-white/40"
+                                        placeholder="Paste link here..." type="text" />
+
+                                    <button onclick="startFromFeatures()"
+                                        class="bg-white text-primary font-black px-10 py-4 rounded-xl hover:bg-opacity-90 transition-all uppercase tracking-wider">
+                                        Start Now
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+            <footer class="bg-background-dark border-t border-white/5 py-12 px-10">
+                <div class="max-w-[1200px] mx-auto flex flex-col @[480px]:flex-row justify-between items-center gap-8">
+                    <div class="flex items-center gap-3">
+                        <div class="size-6 text-primary">
+                            <svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z"
+                                    fill="currentColor"></path>
+                            </svg>
+                        </div>
+                        <span class="font-black tracking-tighter">ViralDownloader</span>
+                    </div>
+                    <div class="flex gap-8 text-sm text-[#9ca6ba]">
+                        <a class="hover:text-white transition-colors" href="#">Privacy</a>
+                        <a class="hover:text-white transition-colors" href="#">Terms</a>
+                        <a class="hover:text-white transition-colors" href="#">Contact</a>
+                    </div>
+                    <p class="text-xs text-[#556075]">© 2026 ViralDownloader. For personal use only.</p>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script>
+        function scrollToFeatureInput() {
+            const input = document.getElementById("featureVideoUrl");
+            if (!input) return;
+            input.scrollIntoView({ behavior: "smooth", block: "center" });
+            input.focus();
+        }
+
+        async function startFromFeatures() {
+            const url = document.getElementById("featureVideoUrl").value.trim();
+
+            if (!url) {
+                alert("Please paste a video link first.");
+                return;
+            }
+
+            try {
+                const res = await fetch(
+                    `http://localhost:8000/prepare?url=${encodeURIComponent(url)}`
+                );
+
+                if (!res.ok) throw new Error();
+
+                const data = await res.json();
+
+                // redirect into real flow
+                window.location.href = `download.html?token=${data.token}`;
+
+            } catch (err) {
+                alert("Failed to prepare video. Make sure the link is public.");
+            }
+        }
+    </script>
+
+</body>
+
+</html>

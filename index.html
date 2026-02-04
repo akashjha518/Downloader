@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Viral Video Downloader Home</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700;800;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d59f2",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#101622",
+                        "accent-pink": "#ff0080",
+                        "accent-blue": "#00d4ff",
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .glass-morphism {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .neon-glow {
+            box-shadow: 0 0 20px rgba(13, 89, 242, 0.4), 0 0 40px rgba(13, 89, 242, 0.2);
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-white overflow-x-hidden">
+    <div class="relative flex min-h-screen flex-col">
+        <!-- Background Decoration -->
+        <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+            <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-accent-pink/20 blur-[120px] rounded-full">
+            </div>
+            <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-primary/20 blur-[150px] rounded-full">
+            </div>
+            <div class="absolute top-[20%] right-[5%] w-[30%] h-[30%] bg-accent-blue/10 blur-[100px] rounded-full">
+            </div>
+        </div>
+        <div class="relative z-10 flex flex-col flex-1">
+            <!-- Navbar -->
+            <header class="flex items-center justify-between px-10 py-6 max-w-7xl mx-auto w-full">
+                <div class="flex items-center gap-3">
+                    <div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+                        <span class="material-symbols-outlined">bolt</span>
+                    </div>
+                    <h2 class="text-xl font-extrabold tracking-tight">ViralDownloader</h2>
+                </div>
+                <nav class="hidden md:flex items-center gap-10">
+                    <a class="text-sm font-medium hover:text-primary transition-colors" href="features.html">Features</a>
+                    <a class="text-sm font-medium hover:text-primary transition-colors" href="#">Pricing</a>
+                    <a class="text-sm font-medium hover:text-primary transition-colors" href="#">API</a>
+                    <a class="text-sm font-medium hover:text-primary transition-colors" href="#">Support</a>
+                </nav>
+                <!-- <div class="flex items-center gap-4">
+                    <button
+                        class="px-6 py-2.5 text-sm font-bold border border-white/10 rounded-xl hover:bg-white/5 transition-all">Login</button>
+                    <button
+                        class="px-6 py-2.5 text-sm font-bold bg-primary text-white rounded-xl shadow-lg shadow-primary/25 hover:scale-105 transition-all">Get
+                        Started</button>
+                </div> -->
+            </header>
+            <!-- Hero Section -->
+            <main class="flex-1 flex flex-col items-center justify-center px-4 py-20">
+                <div class="max-w-[1000px] w-full text-center space-y-12">
+                    <div class="space-y-6">
+                        <span
+                            class="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest">
+                            The Fastest Video Downloader
+                        </span>
+                        <h1
+                            class="text-5xl md:text-7xl font-black leading-[1.1] tracking-tight bg-gradient-to-r from-white via-white to-white/50 bg-clip-text text-transparent">
+                            Download in Seconds,<br /><span class="text-primary">Quality that Pops</span>
+                        </h1>
+                        <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto font-medium">
+                            Save 4K Reels, Shorts, and TikToks without watermarks. High-speed processing for your
+                            favorite content.
+                        </p>
+                    </div>
+                    <!-- Main Input Area -->
+                    <div class="relative max-w-3xl mx-auto w-full group">
+                        <div
+                            class="absolute -inset-1 bg-gradient-to-r from-accent-pink via-primary to-accent-blue rounded-2xl blur opacity-25 group-focus-within:opacity-50 transition duration-1000 group-hover:duration-200">
+                        </div>
+                        <div
+                            class="relative flex h-20 items-center bg-background-dark/80 backdrop-blur-xl rounded-2xl border border-white/10 p-2 shadow-2xl">
+                            <div class="flex items-center justify-center pl-6 text-gray-500">
+                                <span class="material-symbols-outlined text-3xl">link</span>
+                            </div>
+                            <input id="videoUrl"
+                                class="flex-1 bg-transparent border-none focus:ring-0 text-lg font-medium placeholder:text-gray-600 px-6 text-white"
+                                placeholder="Paste video link here (Instagram, YouTube, TikTok)..." type="text" />
+
+                            <button id="downloadTrigger" onclick="prepareDownload()"
+                                class="h-full px-10 bg-primary text-white rounded-xl font-bold text-lg shadow-xl hover:bg-blue-600 transition-all active:scale-95 flex items-center gap-2">
+
+                                <span class="material-symbols-outlined">download</span>
+                                Download
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Preparing State -->
+                    <div id="preparingState" class="hidden mt-12 text-center">
+                        <div
+                            class="mx-auto size-14 rounded-full border-4 border-primary/30 border-t-primary animate-spin">
+                        </div>
+                        <p id="prepMessage" class="mt-6 text-lg font-semibold text-gray-300">
+                            Preparing your video…
+                        </p>
+                    </div>
+
+                    <!-- Ready State -->
+                    <div id="readyState" class="hidden mt-10 w-full max-w-3xl mx-auto">
+                        <div class="flex justify-center w-full">
+                            <div id="videoWrapper"
+                                class="bg-black rounded-2xl overflow-hidden transition-all duration-300">
+                                <video id="videoPreview" class="block bg-black" playsinline
+                                    preload="metadata"></video>
+                            </div>
+                        </div>
+
+
+                        <div class="flex justify-center mt-6">
+                            <button id="finalDownloadBtn"
+                                class="px-10 py-4 bg-primary rounded-xl font-bold text-lg shadow-lg hover:scale-105 transition-all flex items-center gap-2">
+                                <span class="material-symbols-outlined">download</span>
+                                Download MP4
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <p id="errorMsg" class="hidden mt-6 text-red-400 font-medium text-center"></p>
+
+                    <!-- Quick Previews -->
+                    <div class="pt-8 w-full max-w-4xl mx-auto">
+                        <div class="flex items-center justify-center gap-4 mb-6">
+                            <div class="h-[1px] flex-1 bg-gradient-to-r from-transparent to-white/10"></div>
+                            <span class="text-xs font-bold text-gray-500 uppercase tracking-widest px-4">Trending right
+                                now</span>
+                            <div class="h-[1px] flex-1 bg-gradient-to-l from-transparent to-white/10"></div>
+                        </div>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div
+                                class="group relative aspect-[9/16] rounded-2xl overflow-hidden border border-white/5 bg-gray-900 transition-transform hover:-translate-y-2">
+                                <div class="absolute inset-0 bg-cover bg-center"
+                                    data-alt="Action shot from a mountain bike reel"
+                                    style='background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAiFoVILfTKAC4Fp52nVzUNsLRxtM8pvYL7fRqWQhIQ2gG5xggbjMeE8DJt3hWOwu9yC0R47JGRZ0vsomV4I9ss7r7SbpGgJct8YCNmLLKGh516xlst9ufMnUc04VyD_YtNwOvkk-NfOK2ptAvS5g1YtMhmY9dBR3WBIuLwSOaM-iDzCpI6fSFP0egf4JLjPfqh5QasoO0j6b84pa164JPhx3U3-udjN9FYfVhYELk96foGXaM2vLcVsouGUftToP2h9FvEs00EW7gE");'>
+                                </div>
+                                <div class="absolute bottom-3 left-3 flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-white text-sm">play_circle</span>
+                                    <span class="text-[10px] font-bold text-white/80">1.2M views</span>
+                                </div>
+                            </div>
+                            <div
+                                class="group relative aspect-[9/16] rounded-2xl overflow-hidden border border-white/5 bg-gray-900 transition-transform hover:-translate-y-2">
+                                <div class="absolute inset-0 bg-cover bg-center"
+                                    data-alt="Close up of gourmet food cooking"
+                                    style='background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url("https://lh3.googleusercontent.com/aida-public/AB6AXuBDBMlRcbqSzkgHoSWmL82RfYs-FSpgfl6hd05J6kWZjsYYZiFKkFTazLJjoEnzNp0-0t3b06QRPGwPDtv-HAomlrZsj3CzBtzWCtD_Wm5TF8s5GEwlLo54HeY0v8gZeAuEyJeCLVIDw46smV3NmklOUrq4MAoUVURFaPARDoEaL_F12mhQ2Cw0ZtVtK4Hz_mZb37VqBi4d6Hb6AbGC1c2rDG2gg-wthZp1dxqvPRO8-gQ-FxZnl2PG5w4x7tyy1tkTwTku_VZW81lH");'>
+                                </div>
+                                <div class="absolute bottom-3 left-3 flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-white text-sm">play_circle</span>
+                                    <span class="text-[10px] font-bold text-white/80">850K views</span>
+                                </div>
+                            </div>
+                            <div
+                                class="group relative aspect-[9/16] rounded-2xl overflow-hidden border border-white/5 bg-gray-900 transition-transform hover:-translate-y-2">
+                                <div class="absolute inset-0 bg-cover bg-center"
+                                    data-alt="Cinematic landscape drone footage"
+                                    style='background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDxJ0HePrGB9zhvJ15j_SFFAINu-lh0OIGmp_9GuR31nZmPIif11ecZP6mvwHDehsPzGMvEEsy_hALTRXilyZpVVP4-3maZNKsjOXX6euXCiKVO79B9qmlinRWKa67NS6Q6r9QcTCbw6lt2EA1QasdzJEyTujw39I8wmA_gpHQLpYa7AhzOV5VNDmT0Nh77p43UIbqSa5-FkIcqqM326E0OWXY8Yv5OPb8NklgoQJAjYZrwA9WyGtObOAWi-7jZ27UHwKDkMjKpfzV6");'>
+                                </div>
+                                <div class="absolute bottom-3 left-3 flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-white text-sm">play_circle</span>
+                                    <span class="text-[10px] font-bold text-white/80">2.1M views</span>
+                                </div>
+                            </div>
+                            <div
+                                class="group relative aspect-[9/16] rounded-2xl overflow-hidden border border-white/5 bg-gray-900 transition-transform hover:-translate-y-2">
+                                <div class="absolute inset-0 bg-cover bg-center"
+                                    data-alt="Street style fashion transition reel"
+                                    style='background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAeToWb6sPrTNIrX5k_RYBQ9gkRkdykzAnhZ0JmLSXMUa6qEpfvR0BYgPvxd6mN5Lne0M_gL7_LiFFFV37jXeFowxLyy1H2Pc1i57vIQxvntzyplQhIE-0H94mI9a0JTue1yj3nTQwby_5bd9Qs5-XOWQqg0w5euZmKf8AOBEf7qt0iY10BW9rv1FfxwuPeZMlyJyEbtMohcCDYn_-s-9s75AMNZrarrnSzPY4vSpEaEkv1EagRVDFdYhgp4GvfmX6dioE4DipuMG7j");'>
+                                </div>
+                                <div class="absolute bottom-3 left-3 flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-white text-sm">play_circle</span>
+                                    <span class="text-[10px] font-bold text-white/80">432K views</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <!-- Features Section -->
+            <section class="max-w-7xl mx-auto w-full px-10 py-24">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div
+                        class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-primary/50 transition-colors group">
+                        <div
+                            class="size-14 bg-primary/20 rounded-2xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined text-3xl">high_quality</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Ultra HD Quality</h3>
+                        <p class="text-gray-400 leading-relaxed">Download videos in their original 4K resolution. No
+                            compression, no loss in clarity.</p>
+                    </div>
+                    <div
+                        class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-accent-blue/50 transition-colors group">
+                        <div
+                            class="size-14 bg-accent-blue/20 rounded-2xl flex items-center justify-center text-accent-blue mb-6 group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined text-3xl">speed</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Lightning Fast</h3>
+                        <p class="text-gray-400 leading-relaxed">Our optimized servers process links in milliseconds,
+                            delivering files at max speed.</p>
+                    </div>
+                    <div
+                        class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-accent-pink/50 transition-colors group">
+                        <div
+                            class="size-14 bg-accent-pink/20 rounded-2xl flex items-center justify-center text-accent-pink mb-6 group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined text-3xl">branding_watermark</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">No Watermarks</h3>
+                        <p class="text-gray-400 leading-relaxed">Get clean, professional downloads every time. Perfect
+                            for reposting or archiving.</p>
+                    </div>
+                </div>
+            </section>
+            <!-- Footer -->
+            <footer class="mt-auto border-t border-white/10 py-10 px-10">
+                <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+                    <div class="flex items-center gap-2">
+                        <div class="size-6 bg-primary rounded flex items-center justify-center text-white">
+                            <span class="material-symbols-outlined text-xs">bolt</span>
+                        </div>
+                        <span class="font-bold text-sm">ViralDownloader © 2026</span>
+                    </div>
+                    <div class="flex gap-8 text-sm text-gray-500 font-medium">
+                        <a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
+                        <a class="hover:text-white transition-colors" href="#">Terms of Service</a>
+                        <a class="hover:text-white transition-colors" href="#">Cookie Policy</a>
+                    </div>
+                    <div class="flex gap-4">
+                        <a class="size-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-all"
+                            href="#">
+                            <span class="material-symbols-outlined text-xl">share</span>
+                        </a>
+                        <a class="size-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-all"
+                            href="#">
+                            <span class="material-symbols-outlined text-xl">star</span>
+                        </a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script>
+        const messages = [
+            "Analyzing link…",
+            "Contacting servers…",
+            "Preparing secure download…",
+            "Almost ready 🚀"
+        ];
+
+        let msgIndex = 0;
+        let messageInterval;
+
+        function showPreparing() {
+            document.getElementById("preparingState").classList.remove("hidden");
+            document.getElementById("readyState").classList.add("hidden");
+            document.getElementById("errorMsg").classList.add("hidden");
+
+            const msg = document.getElementById("prepMessage");
+            msg.textContent = messages[0];
+
+            messageInterval = setInterval(() => {
+                msgIndex = (msgIndex + 1) % messages.length;
+                msg.textContent = messages[msgIndex];
+            }, 1200);
+        }
+
+        function stopPreparing() {
+            clearInterval(messageInterval);
+            document.getElementById("preparingState").classList.add("hidden");
+        }
+
+        async function prepareDownload() {
+            const url = document.getElementById("videoUrl").value.trim();
+            const error = document.getElementById("errorMsg");
+
+            if (!url) {
+                error.textContent = "Please paste a valid video link.";
+                error.classList.remove("hidden");
+                return;
+            }
+
+            showPreparing();
+
+            try {
+                const res = await fetch(
+                    `http://localhost:8000/prepare?url=${encodeURIComponent(url)}`
+                );
+
+                if (!res.ok) throw new Error();
+
+                const data = await res.json();
+                stopPreparing();
+
+                document.getElementById("readyState").classList.remove("hidden");
+
+                const video = document.getElementById("videoPreview");
+                video.src = `http://localhost:8000/download/${data.token}`;
+                // const video = document.getElementById("videoPreview");
+                const wrapper = document.getElementById("videoWrapper");
+
+                video.onloadedmetadata = () => {
+                    const vw = video.videoWidth;
+                    const vh = video.videoHeight;
+
+                    // calculate aspect ratio
+                    const ratio = vw / vh;
+
+                    // apply correct aspect ratio to wrapper
+                    wrapper.style.aspectRatio = `${vw} / ${vh}`;
+
+                    // vertical video handling (Reels / Shorts)
+                    if (vh > vw) {
+                        video.classList.add("max-w-[210px]");
+                    } else {
+                        video.classList.remove("max-w-[210px]");
+                    }
+                };
+
+                video.load();
+
+                document.getElementById("finalDownloadBtn").onclick = () => {
+                    window.location.href = `http://localhost:8000/download/${data.token}`;
+                };
+
+
+            } catch (e) {
+                stopPreparing();
+                error.textContent = "Failed to prepare video. Make sure the link is public.";
+                error.classList.remove("hidden");
+            }
+        }
+    </script>
+
+</body>
+
+</html>
