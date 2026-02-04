@@ -1,3 +1,4 @@
+# uvicorn main:app --reload
 import uuid
 import requests
 from fastapi import FastAPI, HTTPException
