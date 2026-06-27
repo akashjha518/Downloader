@@ -6,6 +6,7 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Viral Video Downloader Home</title>
+<link rel="icon" type="image/png" href="favico/favicon.png">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700;800;900&amp;display=swap"
         rel="stylesheet" />
@@ -42,9 +43,16 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+
         .neon-glow {
             box-shadow: 0 0 20px rgba(13, 89, 242, 0.4), 0 0 40px rgba(13, 89, 242, 0.2);
         }
+
+        #videoPreview{
+            max-width:100%;
+            height:auto;
+        }
+
     </style>
 </head>
 
@@ -61,7 +69,7 @@
         </div>
         <div class="relative z-10 flex flex-col flex-1">
             <!-- Navbar -->
-            <header class="flex items-center justify-between px-10 py-6 max-w-7xl mx-auto w-full">
+            <header class="flex items-center justify-between px-4 sm:px-6 lg:px-10 py-4 sm:py-6 max-w-7xl mx-auto w-full">
                 <div class="flex items-center gap-3">
                     <div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
                         <span class="material-symbols-outlined">bolt</span>
@@ -91,10 +99,10 @@
                             The Fastest Video Downloader
                         </span>
                         <h1
-                            class="text-5xl md:text-7xl font-black leading-[1.1] tracking-tight bg-gradient-to-r from-white via-white to-white/50 bg-clip-text text-transparent">
+                            class="text-3xl sm:text-5xl md:text-7xl font-black leading-[1.1] tracking-tight bg-gradient-to-r from-white via-white to-white/50 bg-clip-text text-transparent">
                             Download in Seconds,<br /><span class="text-primary">Quality that Pops</span>
                         </h1>
-                        <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto font-medium">
+                        <p class="text-gray-400 text-base sm:text-lg md:text-xl px-2 max-w-2xl mx-auto font-medium">
                             Save 4K Reels, Shorts, and TikToks without watermarks. High-speed processing for your
                             favorite content.
                         </p>
@@ -105,16 +113,16 @@
                             class="absolute -inset-1 bg-gradient-to-r from-accent-pink via-primary to-accent-blue rounded-2xl blur opacity-25 group-focus-within:opacity-50 transition duration-1000 group-hover:duration-200">
                         </div>
                         <div
-                            class="relative flex h-20 items-center bg-background-dark/80 backdrop-blur-xl rounded-2xl border border-white/10 p-2 shadow-2xl">
+                            class="relative flex flex-col sm:flex-row gap-3 sm:gap-0 sm:h-20 bg-background-dark/80 backdrop-blur-xl rounded-2xl border border-white/10 p-3 shadow-2xl">
                             <div class="flex items-center justify-center pl-6 text-gray-500">
                                 <span class="material-symbols-outlined text-3xl">link</span>
                             </div>
                             <input id="videoUrl"
-                                class="flex-1 bg-transparent border-none focus:ring-0 text-lg font-medium placeholder:text-gray-600 px-6 text-white"
+                                class="w-full flex-1 bg-transparent border-none focus:ring-0 text-base sm:text-lg font-medium placeholder:text-gray-600 px-2 sm:px-6 text-white"
                                 placeholder="Paste video link here (Instagram, YouTube, TikTok)..." type="text" />
 
                             <button id="downloadTrigger" onclick="prepareDownload()"
-                                class="h-full px-10 bg-primary text-white rounded-xl font-bold text-lg shadow-xl hover:bg-blue-600 transition-all active:scale-95 flex items-center gap-2">
+                                class="w-full sm:w-auto h-14 sm:h-full px-6 sm:px-10 bg-primary text-white rounded-xl font-bold text-base sm:text-lg shadow-xl hover:bg-blue-600 transition-all active:scale-95 flex items-center justify-center gap-2">
 
                                 <span class="material-symbols-outlined">download</span>
                                 Download
@@ -135,7 +143,7 @@
                     <div id="readyState" class="hidden mt-10 w-full max-w-3xl mx-auto">
                         <div class="flex justify-center w-full">
                             <div id="videoWrapper"
-                                class="bg-black rounded-2xl overflow-hidden transition-all duration-300">
+                                class="bg-black rounded-2xl overflow-hidden transition-all duration-300 max-w-full">
                                 <video id="videoPreview" class="block bg-black" playsinline
                                     preload="metadata"></video>
                             </div>
@@ -162,7 +170,7 @@
                                 now</span>
                             <div class="h-[1px] flex-1 bg-gradient-to-l from-transparent to-white/10"></div>
                         </div>
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
                             <div
                                 class="group relative aspect-[9/16] rounded-2xl overflow-hidden border border-white/5 bg-gray-900 transition-transform hover:-translate-y-2">
                                 <div class="absolute inset-0 bg-cover bg-center"
@@ -212,7 +220,7 @@
                 </div>
             </main>
             <!-- Features Section -->
-            <section class="max-w-7xl mx-auto w-full px-10 py-24">
+            <section class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-10 py-12 sm:py-24">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div
                         class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-primary/50 transition-colors group">
@@ -247,7 +255,7 @@
                 </div>
             </section>
             <!-- Footer -->
-            <footer class="mt-auto border-t border-white/10 py-10 px-10">
+            <footer class="mt-auto border-t border-white/10 py-8 px-4 sm:px-6 lg:px-10">
                 <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
                     <div class="flex items-center gap-2">
                         <div class="size-6 bg-primary rounded flex items-center justify-center text-white">
@@ -255,7 +263,7 @@
                         </div>
                         <span class="font-bold text-sm">ViralDownloader © 2026</span>
                     </div>
-                    <div class="flex gap-8 text-sm text-gray-500 font-medium">
+                    <div class="flex flex-wrap justify-center gap-4 sm:gap-8 text-sm text-gray-500 font-medium">
                         <a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
                         <a class="hover:text-white transition-colors" href="#">Terms of Service</a>
                         <a class="hover:text-white transition-colors" href="#">Cookie Policy</a>
@@ -318,7 +326,7 @@
 
             try {
                 const res = await fetch(
-                    `http://localhost:8000/prepare?url=${encodeURIComponent(url)}`
+                    `https://akashjha518-flask-api.hf.space/prepare?url=${encodeURIComponent(url)}`
                 );
 
                 if (!res.ok) throw new Error();
@@ -329,7 +337,7 @@
                 document.getElementById("readyState").classList.remove("hidden");
 
                 const video = document.getElementById("videoPreview");
-                video.src = `http://localhost:8000/download/${data.token}`;
+                video.src = `https://akashjha518-flask-api.hf.space/download/${data.token}`;
                 // const video = document.getElementById("videoPreview");
                 const wrapper = document.getElementById("videoWrapper");
 
@@ -354,7 +362,7 @@
                 video.load();
 
                 document.getElementById("finalDownloadBtn").onclick = () => {
-                    window.location.href = `http://localhost:8000/download/${data.token}`;
+                    window.location.href = `https://akashjha518-flask-api.hf.space/download/${data.token}`;
                 };
 
 

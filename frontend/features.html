@@ -6,6 +6,8 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Core Features Showcase | ViralDownloader</title>
+    <link rel="icon" type="image/png" href="favico/favicon.png">
+
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700;800;900&amp;family=Noto+Sans:wght@400;700&amp;display=swap"
@@ -66,26 +68,27 @@
             <div
                 class="w-full flex justify-center py-5 sticky top-0 z-40 bg-background-dark/80 backdrop-blur-md border-b border-[#282e39]">
                 <div class="layout-content-container flex flex-col max-w-[1200px] flex-1">
-                    <header class="flex items-center justify-between whitespace-nowrap px-10 py-3">
-                        <div class="flex items-center gap-4 text-white">
+                    <header class="flex items-center justify-between px-10 py-6 max-w-7xl mx-auto w-full">
+                        <div class="flex items-center gap-3">
                             <div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
                                 <span class="material-symbols-outlined">bolt</span>
                             </div>
-                            <h2 class="text-white text-2xl font-black leading-tight tracking-tighter">ViralDownloader
-                            </h2>
+                            <h2 class="text-xl font-extrabold tracking-tight">ViralDownloader</h2>
                         </div>
-                        <div class="flex flex-1 justify-end gap-8">
-                            <div class="flex items-center gap-9">
-                                <a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors"
-                                    href="index.html">Home</a>
-                                <a class="text-primary text-sm font-bold leading-normal border-b-2 border-primary"
-                                    href="#">Features</a>
-                                <a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors"
-                                    href="#">Pricing</a>
-                                <a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors"
-                                    href="#">FAQ</a>
-                            </div>
-                        </div>
+                        <nav class="hidden md:flex items-center gap-10">
+                            <a class="text-sm font-medium hover:text-primary transition-colors"
+                                href="index.html">Home</a>
+                            <a class="text-sm font-medium hover:text-primary transition-colors" href="#">Pricing</a>
+                            <a class="text-sm font-medium hover:text-primary transition-colors" href="#">API</a>
+                            <a class="text-sm font-medium hover:text-primary transition-colors" href="#">Support</a>
+                        </nav>
+                        <!-- <div class="flex items-center gap-4">
+                    <button
+                        class="px-6 py-2.5 text-sm font-bold border border-white/10 rounded-xl hover:bg-white/5 transition-all">Login</button>
+                    <button
+                        class="px-6 py-2.5 text-sm font-bold bg-primary text-white rounded-xl shadow-lg shadow-primary/25 hover:scale-105 transition-all">Get
+                        Started</button>
+                </div> -->
                     </header>
                 </div>
             </div>
@@ -320,7 +323,7 @@
 
             try {
                 const res = await fetch(
-                    `http://localhost:8000/prepare?url=${encodeURIComponent(url)}`
+                    `https://akashjha518-flask-api.hf.space/prepare?url=${encodeURIComponent(url)}`
                 );
 
                 if (!res.ok) throw new Error();

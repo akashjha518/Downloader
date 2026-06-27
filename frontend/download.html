@@ -5,6 +5,10 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>ViralDownloader</title>
+
+    <link rel="icon" type="image/png" href="favico/favicon.png">
+
     <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap"
@@ -38,44 +42,28 @@
     <div
         class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark overflow-x-hidden">
         <!-- Header Section -->
-        <header
-            class="flex items-center justify-between border-b border-solid border-[#282e39] px-10 py-4 bg-background-light dark:bg-background-dark sticky top-0 z-50">
-            <div class="flex items-center gap-8">
-                <div class="flex items-center gap-4 text-white">
-                    <div class="size-6 text-primary">
-                        <svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z">
-                            </path>
-                        </svg>
-                    </div>
-                    <h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">ViralDownloader</h2>
+        <header class="flex items-center justify-between px-10 py-6 max-w-7xl mx-auto w-full">
+            <div class="flex items-center gap-3">
+                <div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+                    <span class="material-symbols-outlined">bolt</span>
                 </div>
-                <!-- <label class="flex flex-col min-w-40 h-10 max-w-64">
-                    <div class="flex w-full flex-1 items-stretch rounded-lg h-full overflow-hidden">
-                        <div class="text-[#9ca6ba] flex border-none bg-[#282e39] items-center justify-center pl-4">
-                            <span class="material-symbols-outlined text-xl">search</span>
-                        </div>
-                        <input
-                            class="form-input flex w-full min-w-0 flex-1 border-none bg-[#282e39] text-white placeholder:text-[#9ca6ba] px-4 pl-2 text-base font-normal focus:ring-0 focus:outline-none"
-                            placeholder="Paste another link..." value="" />
-                    </div>
-                </label> -->
+                <h2 class="text-xl font-extrabold tracking-tight">ViralDownloader</h2>
             </div>
-            <div class="flex items-center gap-8">
-                <nav class="hidden md:flex items-center gap-9">
-                    <a class="text-[#9ca6ba] hover:text-white text-sm font-medium transition-colors" href="index.html">Home</a>
-                    <a class="text-[#9ca6ba] hover:text-white text-sm font-medium transition-colors"
-                        href="features.html">Features</a>
-                    <a class="text-[#9ca6ba] hover:text-white text-sm font-medium transition-colors"
-                        href="#">Premium</a>
-                    <a class="text-[#9ca6ba] hover:text-white text-sm font-medium transition-colors" href="#">FAQ</a>
-                </nav>
-                <button
-                    class="flex min-w-[84px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold tracking-[0.015em]">
-                    <span>Login</span>
-                </button>
-            </div>
+            <nav class="hidden md:flex items-center gap-10">
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="index.html">Home</a>
+
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="features.html">Features</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="#">Pricing</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="#">API</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="#">Support</a>
+            </nav>
+            <!-- <div class="flex items-center gap-4">
+                    <button
+                        class="px-6 py-2.5 text-sm font-bold border border-white/10 rounded-xl hover:bg-white/5 transition-all">Login</button>
+                    <button
+                        class="px-6 py-2.5 text-sm font-bold bg-primary text-white rounded-xl shadow-lg shadow-primary/25 hover:scale-105 transition-all">Get
+                        Started</button>
+                </div> -->
         </header>
         <main class="flex-1 flex flex-col items-center py-8 px-4 md:px-20 lg:px-40">
             <!-- Breadcrumbs -->
@@ -240,7 +228,7 @@
 
         // load preview video
         if (token) {
-            video.src = `http://localhost:8000/download/${token}`;
+            video.src = `https://akashjha518-flask-api.hf.space/download/${token}`;
         }
 
         // adjust UI to real video dimensions
@@ -280,7 +268,7 @@
         function download() {
             if (!token) return;
             window.location.href =
-                `http://localhost:8000/download/${token}?quality=${quality}`;
+                `https://akashjha518-flask-api.hf.space/download/${token}?quality=${quality}`;
         }
 
     </script>

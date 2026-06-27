@@ -2,7 +2,6 @@
 
 Endpoints:
 - `/prepare?url=`
-- `/stream/{token}`
 - `/download/{token}?quality=best|audio`
 
 Notes:

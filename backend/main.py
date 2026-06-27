@@ -1,9 +1,19 @@
 # uvicorn main:app --reload
+
+from __future__ import annotations
+
+import glob
+import os
+import shutil
+import tempfile
 import uuid
-import requests
-from fastapi import FastAPI, HTTPException
+from pathlib import Path
+
+import yt_dlp
+from fastapi import BackgroundTasks, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import StreamingResponse
+from fastapi.responses import FileResponse
+
 from downloader import extract_reel
 
 app = FastAPI()
@@ -15,81 +25,99 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# TEMP store (token → video_url)
-DOWNLOADS = {}
+# token -> {"url": original webpage url, "title": reel title}
+DOWNLOADS: dict[str, dict[str, str]] = {}
+
+
+def _cleanup_dir(path: str) -> None:
+    shutil.rmtree(path, ignore_errors=True)
+
+
+def _download_media(source_url: str, quality: str) -> tuple[str, str, str, str]:
+    tmp_dir = tempfile.mkdtemp(prefix="reelsdownloader-")
+    outtmpl = os.path.join(tmp_dir, "media.%(ext)s")
+
+    if quality == "audio":
+        ydl_opts = {
+            "quiet": True,
+            "noplaylist": True,
+            "format": "bestaudio/best",
+            "outtmpl": outtmpl,
+            "postprocessors": [
+                {
+                    "key": "FFmpegExtractAudio",
+                    "preferredcodec": "mp3",
+                    "preferredquality": "0",
+                }
+            ],
+        }
+        expected_pattern = os.path.join(tmp_dir, "media.mp3")
+        media_type = "audio/mpeg"
+        filename = "audio.mp3"
+    else:
+        ydl_opts = {
+            "quiet": True,
+            "noplaylist": True,
+            "format": "bestvideo*+bestaudio/best",
+            "merge_output_format": "mp4",
+            "outtmpl": outtmpl,
+        }
+        expected_pattern = os.path.join(tmp_dir, "media.mp4")
+        media_type = "video/mp4"
+        filename = "video.mp4"
+
+    try:
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            ydl.download([source_url])
+    except yt_dlp.utils.DownloadError as exc:
+        _cleanup_dir(tmp_dir)
+        raise HTTPException(status_code=500, detail="Media download failed") from exc
+    except Exception as exc:
+        _cleanup_dir(tmp_dir)
+        raise HTTPException(status_code=500, detail="Media download failed") from exc
+
+    if os.path.exists(expected_pattern):
+        media_path = expected_pattern
+    else:
+        matches = glob.glob(os.path.join(tmp_dir, "*"))
+        media_files = [path for path in matches if Path(path).suffix.lower() in {".mp4", ".mp3", ".m4a", ".webm", ".mkv"}]
+        if not media_files:
+            _cleanup_dir(tmp_dir)
+            raise HTTPException(status_code=500, detail="Downloaded file not found")
+        media_path = media_files[0]
+        if quality == "audio" and Path(media_path).suffix.lower() != ".mp3":
+            filename = f"{Path(media_path).stem}.mp3"
+
+    return media_path, media_type, filename, tmp_dir
+
+
 @app.get("/prepare")
 def prepare(url: str):
     try:
-        data = extract_reel(url)
+        reel = extract_reel(url)
         token = str(uuid.uuid4())
-
-        DOWNLOADS[token] = data["video_url"]
-
-        return {"token": token}
-    except:
-        raise HTTPException(status_code=400, detail="Invalid or private Reel")
+        DOWNLOADS[token] = {"url": reel.webpage_url, "title": reel.title}
+        return {"token": token, "title": reel.title}
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail="Invalid or private Reel") from exc
 
 
 @app.get("/download/{token}")
-def download(token: str, quality: str = "best"):
-    video_url = DOWNLOADS.get(token)
-    if not video_url:
+def download(token: str, background_tasks: BackgroundTasks, quality: str = "best"):
+    payload = DOWNLOADS.get(token)
+    if not payload:
         raise HTTPException(status_code=404, detail="Invalid or expired token")
 
-    # AUDIO ONLY (MP3)
-    if quality == "audio":
-        tmp_dir = tempfile.mkdtemp()
-        output_template = os.path.join(tmp_dir, "audio.%(ext)s")
+    if quality not in {"best", "audio"}:
+        raise HTTPException(status_code=400, detail="quality must be 'best' or 'audio'")
 
-        cmd = [
-            "yt-dlp",
-            "-x",
-            "--audio-format", "mp3",
-            "--audio-quality", "0",
-            "-o", output_template,
-            video_url
-        ]
+    media_path, media_type, filename, tmp_dir = _download_media(payload["url"], quality)
 
-        result = subprocess.run(
-            cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            text=True
-        )
+    background_tasks.add_task(_cleanup_dir, tmp_dir)
 
-        if result.returncode != 0:
-            print("yt-dlp error:", result.stderr)
-            raise HTTPException(status_code=500, detail="Audio extraction failed")
-
-        audio_path = os.path.join(tmp_dir, "audio.mp3")
-
-        if not os.path.exists(audio_path):
-            raise HTTPException(status_code=500, detail="MP3 file not created")
-
-        def audio_stream():
-            with open(audio_path, "rb") as f:
-                while True:
-                    chunk = f.read(1024 * 1024)
-                    if not chunk:
-                        break
-                    yield chunk
-
-        return StreamingResponse(
-            audio_stream(),
-            media_type="audio/mpeg",
-            headers={
-                "Content-Disposition": "attachment; filename=audio.mp3"
-            }
-        )
-
-
-    # VIDEO (MP4)
-    r = requests.get(video_url, stream=True)
-
-    return StreamingResponse(
-        r.iter_content(chunk_size=1024 * 1024),
-        media_type="video/mp4",
-        headers={
-            "Content-Disposition": "attachment; filename=video.mp4"
-        }
+    return FileResponse(
+        media_path,
+        media_type=media_type,
+        filename=filename,
+        background=background_tasks,
     )
