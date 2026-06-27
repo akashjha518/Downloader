@@ -283,6 +283,12 @@
         </div>
     </div>
     <script>
+        const API_BASE = window.REELS_API_BASE || "http://127.0.0.1:8000";
+
+        function apiUrl(path) {
+            return `${API_BASE}${path.startsWith("/") ? "" : "/"}${path}`;
+        }
+
         const messages = [
             "Analyzing link…",
             "Contacting servers…",
@@ -326,7 +332,7 @@
 
             try {
                 const res = await fetch(
-                    `https://akashjha518-flask-api.hf.space/prepare?url=${encodeURIComponent(url)}`
+                    apiUrl(`/prepare?url=${encodeURIComponent(url)}`)
                 );
 
                 if (!res.ok) throw new Error();
@@ -337,7 +343,7 @@
                 document.getElementById("readyState").classList.remove("hidden");
 
                 const video = document.getElementById("videoPreview");
-                video.src = `https://akashjha518-flask-api.hf.space/download/${data.token}`;
+                video.src = apiUrl(`/download/${data.token}`);
                 // const video = document.getElementById("videoPreview");
                 const wrapper = document.getElementById("videoWrapper");
 
@@ -362,7 +368,7 @@
                 video.load();
 
                 document.getElementById("finalDownloadBtn").onclick = () => {
-                    window.location.href = `https://akashjha518-flask-api.hf.space/download/${data.token}`;
+                    window.location.href = apiUrl(`/download/${data.token}`);
                 };
 
 

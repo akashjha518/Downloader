@@ -2,6 +2,7 @@
 // Global State
 // ===============================
 let quality = "best";
+const API_BASE = (window.REELS_API_BASE || "https://akashjha518-flask-api.hf.space").replace(/\/$/, "");
 
 const messages = [
   "Analyzing link…",
@@ -26,6 +27,10 @@ function show(el) {
 
 function hide(el) {
   el.classList.add("hidden");
+}
+
+function reelsApiUrl(path) {
+  return `${API_BASE}${path.startsWith("/") ? "" : "/"}${path}`;
 }
 
 // ===============================
@@ -86,7 +91,7 @@ async function prepareDownload() {
 
   try {
     const res = await fetch(
-      `/api/prepare?url=${encodeURIComponent(urlInput.value.trim())}`
+      reelsApiUrl(`/prepare?url=${encodeURIComponent(urlInput.value.trim())}`)
     );
 
     if (!res.ok) throw new Error("Prepare failed");
@@ -101,7 +106,7 @@ async function prepareDownload() {
 
     downloadBtn.onclick = () => {
       window.location.href =
-        `/api/download/${data.token}?quality=${quality}`;
+        reelsApiUrl(`/download/${data.token}?quality=${quality}`);
     };
 
   } catch (err) {
@@ -124,10 +129,10 @@ function initDownloadPage() {
   const downloadBtn = document.getElementById("downloadBtn");
   if (!downloadBtn) return;
 
-  downloadBtn.onclick = () => {
-    window.location.href =
-      `/api/download/${token}?quality=${quality}`;
-  };
+    downloadBtn.onclick = () => {
+      window.location.href =
+      reelsApiUrl(`/download/${token}?quality=${quality}`);
+    };
 }
 
 // ===============================
@@ -140,5 +145,8 @@ document.addEventListener("DOMContentLoaded", () => {
 // ===============================
 // Expose functions to HTML
 // ===============================
-window.prepareDownload = prepareDownload;
+if (typeof window.prepareDownload !== "function") {
+  window.prepareDownload = prepareDownload;
+}
 window.selectQuality = selectQuality;
+window.reelsApiUrl = reelsApiUrl;

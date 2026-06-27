@@ -23,6 +23,7 @@ def extract_reel(url: str) -> ReelInfo:
 
     ydl_opts: dict[str, Any] = {
         "quiet": True,
+        "no_warnings": True,
         "noplaylist": True,
         "skip_download": True,
         "extract_flat": False,

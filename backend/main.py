@@ -12,7 +12,7 @@ from pathlib import Path
 import yt_dlp
 from fastapi import BackgroundTasks, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, HTMLResponse
 
 from downloader import extract_reel
 
@@ -29,6 +29,38 @@ app.add_middleware(
 DOWNLOADS: dict[str, dict[str, str]] = {}
 
 
+@app.get("/", response_class=HTMLResponse)
+def root() -> str:
+    return """
+    <!doctype html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Reels Downloader API</title>
+        <style>
+          body { font-family: system-ui, sans-serif; margin: 2rem; line-height: 1.5; }
+          code { background: #f3f4f6; padding: 0.15rem 0.35rem; border-radius: 0.25rem; }
+        </style>
+      </head>
+      <body>
+        <h1>Reels Downloader API</h1>
+        <p>Service is running.</p>
+        <ul>
+          <li><code>/prepare?url=...</code></li>
+          <li><code>/download/{token}</code></li>
+          <li><code>/health</code></li>
+        </ul>
+      </body>
+    </html>
+    """
+
+
+@app.get("/health")
+def health() -> dict[str, str]:
+    return {"status": "ok"}
+
+
 def _cleanup_dir(path: str) -> None:
     shutil.rmtree(path, ignore_errors=True)
 
@@ -40,6 +72,7 @@ def _download_media(source_url: str, quality: str) -> tuple[str, str, str, str]:
     if quality == "audio":
         ydl_opts = {
             "quiet": True,
+            "no_warnings": True,
             "noplaylist": True,
             "format": "bestaudio/best",
             "outtmpl": outtmpl,
@@ -57,6 +90,7 @@ def _download_media(source_url: str, quality: str) -> tuple[str, str, str, str]:
     else:
         ydl_opts = {
             "quiet": True,
+            "no_warnings": True,
             "noplaylist": True,
             "format": "bestvideo*+bestaudio/best",
             "merge_output_format": "mp4",

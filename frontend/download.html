@@ -219,6 +219,12 @@
     </div>
 
     <script>
+        const API_BASE = window.REELS_API_BASE || "http://127.0.0.1:8000";
+
+        function apiUrl(path) {
+            return `${API_BASE}${path.startsWith("/") ? "" : "/"}${path}`;
+        }
+
         const params = new URLSearchParams(window.location.search);
         const token = params.get("token");
         let quality = "best";
@@ -228,7 +234,7 @@
 
         // load preview video
         if (token) {
-            video.src = `https://akashjha518-flask-api.hf.space/download/${token}`;
+            video.src = apiUrl(`/download/${token}`);
         }
 
         // adjust UI to real video dimensions
@@ -268,7 +274,7 @@
         function download() {
             if (!token) return;
             window.location.href =
-                `https://akashjha518-flask-api.hf.space/download/${token}?quality=${quality}`;
+                apiUrl(`/download/${token}?quality=${quality}`);
         }
 
     </script>

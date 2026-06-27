@@ -306,6 +306,12 @@
         </div>
     </div>
     <script>
+        const API_BASE = window.REELS_API_BASE || "http://127.0.0.1:8000";
+
+        function apiUrl(path) {
+            return `${API_BASE}${path.startsWith("/") ? "" : "/"}${path}`;
+        }
+
         function scrollToFeatureInput() {
             const input = document.getElementById("featureVideoUrl");
             if (!input) return;
@@ -323,7 +329,7 @@
 
             try {
                 const res = await fetch(
-                    `https://akashjha518-flask-api.hf.space/prepare?url=${encodeURIComponent(url)}`
+                    apiUrl(`/prepare?url=${encodeURIComponent(url)}`)
                 );
 
                 if (!res.ok) throw new Error();
